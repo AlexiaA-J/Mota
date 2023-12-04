@@ -14,7 +14,14 @@ function your_theme_new_customizer_settings($wp_customize) {
     add_action('customize_register', 'your_theme_new_customizer_settings');
 
 /* Rajout des emplacements Menu */
+function register_my_menus()
+{
+    register_nav_menus(
+        array(
+            'main' => __('Header'),
+            'footer' => __('Bas de page'),
+        )
+    );
+}
+add_action('after_setup_theme', 'register_my_menus');
 
-register_nav_menus(array(
-    'theme_location' => 'header-menu'
-));
