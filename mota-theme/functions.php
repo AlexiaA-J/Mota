@@ -25,3 +25,10 @@ function register_my_menus()
 }
 add_action('after_setup_theme', 'register_my_menus');
 
+// Enqueuing
+
+add_action( 'wp_enqueue_scripts', 'chicdressing_enqueue_styles' );
+function chicdressing_enqueue_styles() {
+    wp_enqueue_style( 'parent-style', get_template_directory_uri() . '/assets/css/theme.css' );
+    wp_enqueue_script( 'script', get_template_directory_uri() . '/assets/js/script.js', array(), true );
+}
