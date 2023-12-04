@@ -1,39 +1,157 @@
 @font-face {
     font-family: 'Space Mono';
-    src: url('./assets/fonts/SpaceMono-Regular.woff2') format("woff2");
+    src: url('../fonts/SpaceMono-Regular.woff2') format("woff2");
     font-display: swap;
     font-style: normal;
     font-weight: 400;
   }
 
-  @font-face {
+@font-face {
     font-family: 'Space Mono';
-    src: url('./assets/fonts/SpaceMono-Bold.woff2') format("woff2");
+    src: url('../fonts/SpaceMono-Bold.woff2') format("woff2");
     font-display: swap;
     font-style: normal;
     font-weight: 700;
   }
 
-  @font-face {
+@font-face {
     font-family: 'Space Mono';
-    src: url('./assets/fonts/SpaceMono-Italic.woff2') format("woff2");
+    src: url('../fonts/SpaceMono-Italic.woff2') format("woff2");
     font-display: swap;
     font-style: italic;
     font-weight: 400;
   }
 
-  @font-face {
+@font-face {
     font-family: 'Poppins';
-    src: url('./assets/fonts/Poppins-Light.woff2') format("woff2");
+    src: url('../fonts/Poppins-Light.woff2') format("woff2");
     font-display: swap;
     font-style: normal;
-    font-weight: 400;
+    font-weight: 400; 
   }
 
-  .logo {
+body {
+    font-family: 'Space Mono';
+    color: black;
+  }
+
+ul {
+    list-style: none;
+  }
+
+a, a:visited {
+    text-decoration: none;
+    color: inherit;
+}
+
+.header {
+    padding: 18px 145px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+.logo {
     object-fit: contain;
   }
 
-  ul {
-    list-style: none;
+.navBar-desktop {
+    display: flex;
+    flex-direction: row; 
   }
+
+.navBar-desktop ul {
+    margin: 0;
+  }
+.navBar-desktop li {
+    display: inline-block;
+    padding-left: 28px;
+  }
+
+.navBar-mobile {
+    display: none;
+  }
+
+
+/* RESPONSIVE */
+
+@media (max-width: 1024px) {
+    .header {
+        padding: 18px 70px;
+    }
+}
+
+
+@media (max-width: 801px) {
+    .header {
+        padding: 18px 55px 18px 15px;
+    }
+
+    .navBar-desktop {
+        display: none;
+    }
+
+    .navBar-mobile{
+        display: block;
+    }
+
+    #openBtn {
+        position: absolute;
+    }
+
+    .burger-icon span {
+        display: block;
+        width: 35px;
+        height: 2px;
+        background-color: black;
+        margin: 0 0 8px 0;
+      }
+
+    #menu_burger {
+        display: none;
+    }
+
+    #menu_burger {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #E00000;
+        z-index: 1000;
+    }
+
+    .nav_burger.active {
+        display: block !important;
+    }
+
+    .navBar-mobile-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px;
+        background-color: white;
+    }
+
+    .nav_burger .close {
+        font-size: 40px;
+      }
+
+    #menu-header-menu-1 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 18px;
+        padding: 150px 0 0 0;
+        font-size: 44px;
+        color: white;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        width: 138px;
+        height: 9px;
+    }
+}
