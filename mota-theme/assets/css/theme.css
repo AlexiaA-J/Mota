@@ -33,6 +33,9 @@
 body {
     font-family: 'Space Mono';
     color: black;
+    max-width: 1440px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
 ul {
@@ -74,6 +77,28 @@ a, a:visited {
     display: none;
   }
 
+/* FOOTER */
+
+footer {
+  width: 100%;
+  position: absolute;
+  bottom : 0;
+  left: 0;
+  border-top: solid 1px;
+}
+
+#menu-footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 86px;
+  margin: 7px;
+  padding-left: 0;
+}
+
+.copyright {
+  margin: 0;
+}
 
 /* RESPONSIVE */
 
@@ -86,7 +111,7 @@ a, a:visited {
 
 @media (max-width: 801px) {
     .header {
-        padding: 18px 55px 18px 15px;
+        padding: 18px 75px 18px 40px;
     }
 
     .navBar-desktop {
@@ -132,7 +157,7 @@ a, a:visited {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 1px 20px 1px 23px;
+        padding: 1px 40px 1px 40px;
         background-color: white;
     }
 
@@ -148,6 +173,15 @@ a, a:visited {
         padding: 150px 0 0 0;
         font-size: 44px;
         color: white;
+    }
+
+    #menu-footer {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      align-items: center;
+      margin: 43px 0px 43px 0px;
+      padding-left: 0;
     }
 }
 
