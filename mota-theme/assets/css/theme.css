@@ -44,6 +44,8 @@ a, a:visited {
     color: inherit;
 }
 
+/* HEADER */
+
 .header {
     padding: 18px 145px;
     display: flex;
