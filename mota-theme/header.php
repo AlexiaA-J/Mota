@@ -20,7 +20,7 @@
         <?php endif; 
         ?>
         <div class="navBar-desktop">
-            <?php wp_nav_menu(array('main' => 'Header'))?>
+            <?php wp_nav_menu(array('theme_location' => 'main')); ?>
         </div>
         <div class="navBar-mobile">
             <div id="menu_burger" class="nav_burger">
@@ -37,7 +37,7 @@
                     ?>
                     <a id="closeBtn" href="#" class="close">&times;</a>
                 </div>
-                <?php wp_nav_menu(array('main' => 'Header'))?>
+                <?php wp_nav_menu(array('theme_location' => 'main')); ?>
             </div>
 
             <a href="#" id="openBtn">
