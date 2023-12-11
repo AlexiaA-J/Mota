@@ -32,3 +32,15 @@ function chicdressing_enqueue_styles() {
     wp_enqueue_style( 'parent-style', get_template_directory_uri() . '/assets/css/theme.css' );
     wp_enqueue_script( 'script', get_template_directory_uri() . '/assets/js/script.js', array(), true );
 }
+
+// Add text to footer menu
+
+add_filter( 'wp_nav_menu_items', 'add_extra_item_to_nav_menu', 10, 2 );
+function add_extra_item_to_nav_menu( $items, $args ) {
+    error_log('Debug: Inside add_extra_item_to_nav_menu function');
+    if ($args-> theme_location === 'footer') {
+        error_log('Debug: Adding item to footer menu');
+        $items .= '<li><p class="copyright">TOUS DROITS RÉSERVÉS</p></li>';
+    }
+    return $items;
+}
