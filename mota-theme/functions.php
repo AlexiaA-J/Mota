@@ -44,3 +44,6 @@ function add_extra_item_to_nav_menu( $items, $args ) {
     }
     return $items;
 }
+
+// Remove <p> and <br/> from Contact Form 7
+add_filter('wpcf7_autop_or_not', '__return_false');
