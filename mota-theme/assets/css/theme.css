@@ -24,11 +24,13 @@
 
 @font-face {
     font-family: 'Poppins';
-    src: url('../fonts/Poppins-Light.woff2') format("woff2");
+    src: url('../fonts/Poppins-Regular.woff2') format("woff2");
     font-display: swap;
     font-style: normal;
     font-weight: 400; 
   }
+
+
 
 body {
     font-family: 'Space Mono';
@@ -54,6 +56,7 @@ a, a:visited {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    margin-bottom: 50px;
   }
 
 .logo {
@@ -76,6 +79,76 @@ a, a:visited {
 .navBar-mobile {
     display: none;
   }
+
+/* MODAL FORM */
+
+.contactForm {
+  display: flex;
+  flex-direction: column;
+  font-size: 12px !important;
+  width: 597px;
+  height: 769px;
+  border: 5px solid #000;
+  align-items: center;
+}
+
+.imgForm {
+  margin-top: 18px;
+  margin-bottom: 21px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form label {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 1px;
+  margin-top: 24px;
+}
+
+.formtitle {
+  font-family: 'Poppins';
+}
+
+.wpcf7-text{
+  width: 263px;
+  height: 40px;
+  border-radius: 8px;
+  border: 1px solid #B8BBC2;
+}
+
+.wpcf7-textarea{
+    resize: none;
+    width: 263px;
+    height: 210px; 
+    border-radius: 8px;
+    border: 1px solid #B8BBC2; 
+}
+
+.wpcf7-spinner{
+	display: none;
+}
+
+.wpcf7-submit {
+  font-family: 'Space Mono' !important;
+  background-color: #D8D8D8;
+  border: none;
+  border-radius: 2px;
+  width: 267px;
+  height: 50px; 
+  padding: 0;
+  transition: background-color 1000ms;
+  margin-top: 18px;
+}
+
+.wpcf7-submit:hover {
+  background-color: darkgray;
+  transition: background-color 1000ms;
+}
 
 /* FOOTER */
 
