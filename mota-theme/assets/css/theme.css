@@ -1,266 +1,322 @@
 @font-face {
-    font-family: 'Space Mono';
-    src: url('../fonts/SpaceMono-Regular.woff2') format("woff2");
-    font-display: swap;
-    font-style: normal;
-    font-weight: 400;
-  }
+  font-family: 'Space Mono';
+  src: url('../fonts/SpaceMono-Regular.woff2') format("woff2");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 400;
+}
 
 @font-face {
-    font-family: 'Space Mono';
-    src: url('../fonts/SpaceMono-Bold.woff2') format("woff2");
-    font-display: swap;
-    font-style: normal;
-    font-weight: 700;
-  }
+  font-family: 'Space Mono';
+  src: url('../fonts/SpaceMono-Bold.woff2') format("woff2");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 700;
+}
 
 @font-face {
-    font-family: 'Space Mono';
-    src: url('../fonts/SpaceMono-Italic.woff2') format("woff2");
-    font-display: swap;
-    font-style: italic;
-    font-weight: 400;
-  }
+  font-family: 'Space Mono';
+  src: url('../fonts/SpaceMono-Italic.woff2') format("woff2");
+  font-display: swap;
+  font-style: italic;
+  font-weight: 400;
+}
 
 @font-face {
-    font-family: 'Poppins';
-    src: url('../fonts/Poppins-Regular.woff2') format("woff2");
-    font-display: swap;
-    font-style: normal;
-    font-weight: 400; 
-  }
+  font-family: 'Poppins';
+  src: url('../fonts/Poppins-Regular.woff2') format("woff2");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 400; 
+}
 
 
 
 body {
-    font-family: 'Space Mono';
-    color: black;
-    max-width: 1440px;
-    margin-left: auto;
-    margin-right: auto;
-  }
+  font-family: 'Space Mono';
+  color: black;
+  max-width: 1440px;
+  margin-left: auto;
+  margin-right: auto;
+}
 
 ul {
-    list-style: none;
-  }
+  list-style: none;
+}
 
 a, a:visited {
-    text-decoration: none;
-    color: inherit;
+  text-decoration: none;
+  color: inherit;
 }
 
 /* HEADER */
 
 .header {
-    padding: 18px 145px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin-bottom: 50px;
-  }
+  padding: 18px 145px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 50px;
+}
 
 .logo {
-    object-fit: contain;
-  }
+  object-fit: contain;
+}
 
 .navBar-desktop {
-    display: flex;
-    flex-direction: row; 
-  }
+  display: flex;
+  flex-direction: row; 
+}
 
 .navBar-desktop ul {
-    margin: 0;
-  }
+  margin: 0;
+}
 .navBar-desktop li {
-    display: inline-block;
-    padding-left: 28px;
-  }
+  display: inline-block;
+  padding-left: 28px;
+}
 
 .navBar-mobile {
-    display: none;
-  }
+  display: none;
+}
 
 /* MODAL FORM */
 
+.modal-overlay {
+position: fixed;
+top: 0;
+right: 0;
+bottom: 0;
+left: 0;
+z-index: 1000;
+background-color: rgba(0,0,0,0.75);
+display: none;
+}
+
+.modal-overlay .active {
+  display: flex !important;
+}
+
+#wpcf7-f28-o1 {
+position:fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+}
+
 .contactForm {
-  display: flex;
-  flex-direction: column;
-  font-size: 12px !important;
-  width: 597px;
-  height: 769px;
-  border: 5px solid #000;
-  align-items: center;
+display: flex;
+flex-direction: column;
+font-size: 12px !important;
+width: 597px;
+height: 769px;
+border: 5px solid #000;
+align-items: center;
+background-color: white;
 }
 
 .imgForm {
-  margin-top: 18px;
-  margin-bottom: 21px;
+margin-top: 18px;
+margin-bottom: 21px;
 }
 
 .form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+display: flex;
+flex-direction: column;
+align-items: center;
 }
 
 .form label {
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 1px;
-  margin-top: 24px;
+display: flex !important;
+flex-direction: column !important;
+gap: 1px;
+margin-top: 24px;
 }
 
 .formtitle {
-  font-family: 'Poppins';
+font-family: 'Poppins';
 }
 
 .wpcf7-text{
-  width: 263px;
-  height: 40px;
-  border-radius: 8px;
-  border: 1px solid #B8BBC2;
+width: 263px;
+height: 40px;
+border-radius: 8px;
+border: 1px solid #B8BBC2;
 }
 
 .wpcf7-textarea{
-    resize: none;
-    width: 263px;
-    height: 210px; 
-    border-radius: 8px;
-    border: 1px solid #B8BBC2; 
+  resize: none;
+  width: 263px;
+  height: 210px; 
+  border-radius: 8px;
+  border: 1px solid #B8BBC2; 
 }
 
 .wpcf7-spinner{
-	display: none;
+display: none;
 }
 
 .wpcf7-submit {
-  font-family: 'Space Mono' !important;
-  background-color: #D8D8D8;
-  border: none;
-  border-radius: 2px;
-  width: 267px;
-  height: 50px; 
-  padding: 0;
-  transition: background-color 1000ms;
-  margin-top: 18px;
+font-family: 'Space Mono' !important;
+background-color: #D8D8D8;
+border: none;
+border-radius: 2px;
+width: 267px;
+height: 50px; 
+padding: 0;
+transition: background-color 1000ms;
+margin-top: 18px;
 }
 
 .wpcf7-submit:hover {
-  background-color: darkgray;
-  transition: background-color 1000ms;
+background-color: darkgray;
+transition: background-color 1000ms;
 }
 
 /* FOOTER */
 
 footer {
-  width: 100%;
-  position: absolute;
-  bottom : 0;
-  left: 0;
-  border-top: solid 1px;
+width: 100%;
+position: absolute;
+bottom : 0;
+left: 0;
+border-top: solid 1px;
 }
 
 #menu-footer {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  gap: 86px;
-  margin: 7px;
-  padding-left: 0;
+display: flex;
+flex-direction: row;
+justify-content: center;
+gap: 86px;
+margin: 7px;
+padding-left: 0;
 }
 
 .copyright {
-  margin: 0;
+margin: 0;
 }
 
 /* RESPONSIVE */
 
+/* Header */
+
 @media (max-width: 1024px) {
-    .header {
-        padding: 18px 70px;
-    }
+  .header {
+      padding: 18px 70px;
+  }
 }
 
 
 @media (max-width: 801px) {
-    .header {
-        padding: 18px 75px 18px 40px;
+  .header {
+      padding: 18px 75px 18px 40px;
+  }
+
+  .navBar-desktop {
+      display: none;
+  }
+
+  .navBar-mobile{
+      display: block;
+  }
+
+  #openBtn {
+      position: absolute;
+  }
+
+  .burger-icon span {
+      display: block;
+      width: 35px;
+      height: 2px;
+      background-color: black;
+      margin: 0 0 8px 0;
     }
 
-    .navBar-desktop {
-        display: none;
+  #menu_burger {
+      display: none;
+  }
+
+  #menu_burger {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #E00000;
+      z-index: 1000;
+  }
+
+  .nav_burger.active {
+      display: block !important;
+  }
+
+  .navBar-mobile-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1px 40px 1px 40px;
+      background-color: white;
+  }
+
+  .nav_burger .close {
+      font-size: 50px;
     }
 
-    .navBar-mobile{
-        display: block;
-    }
-
-    #openBtn {
-        position: absolute;
-    }
-
-    .burger-icon span {
-        display: block;
-        width: 35px;
-        height: 2px;
-        background-color: black;
-        margin: 0 0 8px 0;
-      }
-
-    #menu_burger {
-        display: none;
-    }
-
-    #menu_burger {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: #E00000;
-        z-index: 1000;
-    }
-
-    .nav_burger.active {
-        display: block !important;
-    }
-
-    .navBar-mobile-top {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 1px 40px 1px 40px;
-        background-color: white;
-    }
-
-    .nav_burger .close {
-        font-size: 50px;
-      }
-
-    #menu-header-menu-1 {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 18px;
-        padding: 150px 0 0 0;
-        font-size: 44px;
-        color: white;
-    }
-
-    #menu-footer {
+  #menu-header-menu-1 {
       display: flex;
       flex-direction: column;
-      gap: 30px;
       align-items: center;
-      margin: 43px 0px 43px 0px;
-      padding-left: 0;
+      gap: 18px;
+      padding: 150px 0 0 0;
+      font-size: 44px;
+      color: white;
+  }
+
+  #menu-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+    margin: 43px 0px 43px 0px;
+    padding-left: 0;
+  }
+
+/* Contact form modal */
+  .contactForm {
+    width: 286px;
+    height: 583px; 
+    overflow: hidden;
+  }
+
+  .imgForm {
+    height: 55px;
+    margin-bottom: 0;
     }
-}
+
+  .form label {
+    margin-top: 14px;
+  }
+
+  .wpcf7-text {
+    width: 190px;
+    height: 40px; 
+  }
+
+  .wpcf7-textarea {
+    width: 190px;
+    height: 149px; 
+  }
+
+  .wpcf7-submit {
+    width: 195px;
+    height: 45px;
+  }
+} 
 
 @media (max-width: 480px) {
-    .logo {
-        width: 138px;
-        height: 9px;
-    }
+  .logo {
+      width: 138px;
+      height: 9px;
+  }
 }
