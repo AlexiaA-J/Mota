@@ -1,24 +1,37 @@
 <?php
 get_header();
 ?>
-    <div class="page-content">
-    <!-- Section Superieur -->
-        <section class="main-content">
-            <div class="upper-content">
-                <div class="infos-container">
-                    <p class=photo-title><?php echo get_the_title()?></p>
-                    <p> Référence : <span class="ref-value"><?php /*Add php content here */ ?></span><p>
-                    <p> Catégorie : <?php /*Add php content here */ ?></p>
-                    <p> Format : <?php /*Add php content here */ ?></p>
-                    <p> Type : <?php /*Add php content here */ ?></p>
-                    <p> Année : <?php /*Add php content here */ ?></p>
+    <main id="primary" class="site-main">
+        <div class="page-content">
+        <!-- Section Superieur -->
+            <section class="main-content">
+                <div class="upper-content">
+                    <div class="infos-container">
+                        <p class=photo-title><?php echo get_the_title()?></p>
+                        <p> Référence : <span class="ref-value"><?php echo get_field('ref');?></span><p>
+                        <p> Catégorie : <?php $categories = get_the_terms( $post->ID, 'category' );
+                                        foreach( $categories as $category ) {
+                                        echo $category->name;
+                                        } ?></p>
+                        <p> Format : <?php $formats = get_the_terms( $post->ID, 'format' );
+                                        foreach( $formats as $format ) {
+                                        echo $format->name;
+                                        } ?></p></p>
+                        <p> Type : <?php echo get_field('type'); ?></p>
+                        <p> Année : <?php $dates = get_the_terms( $post->ID, 'date' );
+                                        foreach( $dates as $date ) {
+                                        echo $date->name;
+                                        } ?></p></p>
+                    </div>
+                    <div class="photos-container">
+                        <img src="<?php $photo = get_field('photo');
+                                        echo $photo['url'];
+                                    ?>" alt="Photographie">
+                    </div>
                 </div>
-                <div class="photos-container">
-                    <img src="<?php /*Add php content here */?>">
-                </div>
-            </div>
-        </section>
-    </div>    
+            </section>
+        </div>
+    </main><!-- #main -->  
 <?php
 get_footer();
 ?>
