@@ -48,13 +48,4 @@ function add_extra_item_to_nav_menu( $items, $args ) {
 // Remove <p> and <br/> from Contact Form 7
 add_filter('wpcf7_autop_or_not', '__return_false');
 
-// Taxonomy function
-function display_taxonomy_terms($post_id, $taxonomy) {
-    $terms = get_the_terms($post_id, $taxonomy);
-    
-    if ($terms && !is_wp_error($terms)) {
-        echo implode(', ', wp_list_pluck($terms, 'name'));
-    }
-}
-
 // add_filter( 'wpcf7_ajax_loader', '__return_false' );
