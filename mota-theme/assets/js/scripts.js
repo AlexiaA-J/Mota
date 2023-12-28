@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function() {
         menuBurger.classList.remove("active");
     }
 
-    // Contact form
+    // Contact form call from menu
 
     const contactBtns = document.querySelectorAll(".menu-item-29 a");
     const modalForm = document.querySelector(".modal-overlay");
