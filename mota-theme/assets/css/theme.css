@@ -286,18 +286,6 @@ p {
   align-self: center;
 }
 
-.btn {
-  font-family: 'Space Mono';
-  font-size: 12px; 
-  height: 50px;
-  padding: 8px 15px;
-  border-radius: 2px;
-  background: #D8D8D8;
-  border: none;
-  cursor: pointer;
-  align-self: center;
-}
-
 .contact-btn {
   width: 46%;
 }
@@ -379,7 +367,7 @@ margin: 0;
   }
 
   .single-photo-content, .contact-content {
-    margin: 0 29px 0 31px
+    margin: 0 29px 0 31px;
   }
 
   .single-photo-content {

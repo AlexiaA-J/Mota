@@ -29,7 +29,7 @@ add_action('after_setup_theme', 'register_my_menus');
 
 add_action( 'wp_enqueue_scripts', 'mota_enqueue_styles' );
 function mota_enqueue_styles() {
-    wp_enqueue_style( 'parent-style', get_template_directory_uri() . '/assets/css/theme.css' );
+    wp_enqueue_style( 'parent-style', get_template_directory_uri() . '/assets/scss/theme.css' );
     wp_enqueue_script( 'script', get_template_directory_uri() . '/assets/js/scripts.js', array(), true );
 }
 
