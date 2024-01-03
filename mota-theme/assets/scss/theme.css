@@ -411,8 +411,30 @@ a, a:visited {
 .page-content .contact-content .preview .arrows {
   display: flex;
   flex-direction: row;
-  gap: 30px;
+  gap: 29px;
   padding-bottom: 10px;
+}
+.page-content .contact-content .preview .arrows .arrow-link {
+  position: relative;
+}
+.page-content .contact-content .preview .arrows .arrow-link .hover-thumbnail {
+  display: none;
+  position: absolute;
+  z-index: 1;
+}
+.page-content .contact-content .preview .arrows .arrow-link .hover-thumbnail img {
+  width: 81px;
+  height: 71px;
+}
+.page-content .contact-content .preview .arrows .arrow-link.arrow-left:hover .hover-thumbnail.thumbnail-left {
+  display: block;
+  top: -80px;
+  left: 0px;
+}
+.page-content .contact-content .preview .arrows .arrow-link.arrow-right:hover .hover-thumbnail.thumbnail-right {
+  display: block;
+  top: -80px; /* Adjust the vertical distance for thumbnail-right */
+  left: -55px;
 }
 .page-content .gallery {
   margin-top: 77px;

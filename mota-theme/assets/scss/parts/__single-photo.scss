@@ -135,8 +135,38 @@
         .arrows {
           display: flex;
           flex-direction: row;
-          gap: 30px;
+          gap: 29px;
           padding-bottom: 10px;
+          .arrow-link {
+            position: relative;
+        
+            .hover-thumbnail {
+              display: none;
+              position: absolute;
+              z-index: 1;
+        
+              img {
+                width: 81px;
+                height: 71px;
+              }
+            }
+        
+            &.arrow-left:hover .hover-thumbnail {
+              &.thumbnail-left {
+                display: block;
+                top: -80px;
+                left: 0px;
+              }
+            }
+        
+            &.arrow-right:hover .hover-thumbnail {
+              &.thumbnail-right {
+                display: block;
+                top: -80px; /* Adjust the vertical distance for thumbnail-right */
+                left: -55px;
+              }
+            }
+          }
         }
       }
     }
