@@ -34,16 +34,24 @@ get_header();
                         $nextpost = get_next_post();
                         ?>
                         <div class="arrows">
-                        <?php if ($previouspost) : ?>
-                            <a href="<?php echo get_permalink($previouspost); ?>">
-                                <img class="arrow arrow-left" src="<?php echo get_template_directory_uri(); ?>/assets/images/arrow-left.svg" alt="Arrow for previous picture">
-                            </a>
-                        <?php endif; ?>
-                        <?php if ($nextpost) : ?>
-                            <a href="<?php echo get_permalink($nextpost); ?>">
-                                <img class="arrow arrow-right" src="<?php echo get_template_directory_uri(); ?>/assets/images/arrow-right.svg" alt="Arrow for next picture">
-                            </a>
-                        <?php endif; ?>
+                            <?php if ($previouspost) : ?>
+                                <?php $previous_photo = get_field('photo', $previouspost->ID); ?>
+                                <a href="<?php echo get_permalink($previouspost); ?>" class="arrow-link arrow-left">
+                                    <img class="arrow arrow-left" src="<?php echo get_template_directory_uri(); ?>/assets/images/arrow-left.svg" alt="Arrow for previous picture">
+                                    <div class="hover-thumbnail thumbnail-left">
+                                        <?php echo wp_get_attachment_image($previous_photo['ID'], array(81, 71)); ?>
+                                    </div>
+                                </a>
+                            <?php endif; ?>
+                            <?php if ($nextpost) : ?>
+                                <?php $next_photo = get_field('photo', $nextpost->ID); ?>
+                                <a href="<?php echo get_permalink($nextpost); ?>" class="arrow-link arrow-right">
+                                    <img class="arrow arrow-right" src="<?php echo get_template_directory_uri(); ?>/assets/images/arrow-right.svg" alt="Arrow for next picture">
+                                    <div class="hover-thumbnail thumbnail-right">
+                                        <?php echo wp_get_attachment_image($next_photo['ID'], array(81, 71)); ?>
+                                    </div>
+                                </a>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
