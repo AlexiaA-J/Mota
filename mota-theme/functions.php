@@ -37,9 +37,7 @@ function mota_enqueue_styles() {
 
 add_filter( 'wp_nav_menu_items', 'add_extra_item_to_nav_menu', 10, 2 );
 function add_extra_item_to_nav_menu( $items, $args ) {
-    error_log('Debug: Inside add_extra_item_to_nav_menu function');
     if ($args-> theme_location === 'footer') {
-        error_log('Debug: Adding item to footer menu');
         $items .= '<li><p class="copyright">TOUS DROITS RÉSERVÉS</p></li>';
     }
     return $items;
@@ -49,3 +47,12 @@ function add_extra_item_to_nav_menu( $items, $args ) {
 add_filter('wpcf7_autop_or_not', '__return_false');
 
 // add_filter( 'wpcf7_ajax_loader', '__return_false' );
+
+
+
+
+
+remove_action( 'shutdown', 'wp_ob_end_flush_all', 1 );
+add_action( 'shutdown', function() {
+   while ( @ob_end_flush() );
+} );
