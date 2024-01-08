@@ -179,7 +179,23 @@
       .you-may-also-like {
         font-size: 18px;
       }
+
+      .gallery-container{
+          max-width: 1250px;
+          padding: 20px 0;
+          display: grid;
+          grid-template-columns: repeat(2, 1fr); 
+          gap: 20px; /* Écart horizontal */
+        
+          img {
+            width: 100%;
+            height: 60vh;
+            object-fit: cover;
+          }
+      }
     }
+
+
 
     .btn-container {
         display: flex;
