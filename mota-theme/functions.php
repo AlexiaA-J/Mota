@@ -29,7 +29,7 @@ add_action('after_setup_theme', 'register_my_menus');
 
 add_action( 'wp_enqueue_scripts', 'mota_enqueue_styles' );
 function mota_enqueue_styles() {
-    wp_enqueue_style( 'parent-style', get_template_directory_uri() . '/assets/css/theme.css' );
+    wp_enqueue_style( 'parent-style', get_template_directory_uri() . '/assets/scss/theme.css' );
     wp_enqueue_script( 'script', get_template_directory_uri() . '/assets/js/scripts.js', array(), true );
 }
 
@@ -37,9 +37,7 @@ function mota_enqueue_styles() {
 
 add_filter( 'wp_nav_menu_items', 'add_extra_item_to_nav_menu', 10, 2 );
 function add_extra_item_to_nav_menu( $items, $args ) {
-    error_log('Debug: Inside add_extra_item_to_nav_menu function');
     if ($args-> theme_location === 'footer') {
-        error_log('Debug: Adding item to footer menu');
         $items .= '<li><p class="copyright">TOUS DROITS RÉSERVÉS</p></li>';
     }
     return $items;
@@ -47,3 +45,19 @@ function add_extra_item_to_nav_menu( $items, $args ) {
 
 // Remove <p> and <br/> from Contact Form 7
 add_filter('wpcf7_autop_or_not', '__return_false');
+
+// add_filter( 'wpcf7_ajax_loader', '__return_false' );
+
+
+function mota_supports()
+{
+    // Ajouter la prise en charge des images mises en avant
+    add_theme_support('post-thumbnails');
+}
+add_action('after_setup_theme', 'mota_supports');
+
+
+remove_action( 'shutdown', 'wp_ob_end_flush_all', 1 );
+add_action( 'shutdown', function() {
+   while ( @ob_end_flush() );
+} );

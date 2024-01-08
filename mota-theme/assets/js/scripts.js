@@ -19,11 +19,12 @@ document.addEventListener("DOMContentLoaded", function() {
         menuBurger.classList.remove("active");
     }
 
-    // Contact form
+    // Contact form call from menu or single-photo button
 
-    const contactBtns = document.querySelectorAll(".menu-item-29 a");
+    const contactBtns = document.querySelectorAll(".menu-item-29 a, .contact-btn");
     const modalForm = document.querySelector(".modal-overlay");
     const modalContent = document.getElementById("wpcf7-f28-o1");
+    const formRefDiv = document.querySelector(".formRef");
 
     contactBtns.forEach(contactBtn => {
         contactBtn.onclick = openForm;
@@ -31,16 +32,52 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function openForm(event) {
         event.preventDefault();
-        modalForm.classList.add("active");
+        const refValueElement = document.querySelector(".ref-value");
 
-        document.addEventListener("click", closeFormOutside);
+        // Check if ref-value element is present on the page
+        if (refValueElement) {
+            const refValue = refValueElement.textContent;
+
+            const inputField = formRefDiv.querySelector("input[name='your-subject']");
+            if (inputField) {
+                inputField.value = refValue;
+            }
+
+            const uppercaseValue = refValue.toUpperCase();
+
+            inputField.value = uppercaseValue;
+        }
+        modalForm.classList.add("active");
+            document.addEventListener("click", closeFormOutside);
     }
 
     function closeFormOutside(event) {
         if (!modalContent.contains(event.target) && !Array.from(contactBtns).includes(event.target)) {
             modalForm.classList.remove("active");
-
             document.removeEventListener("click", closeFormOutside);
         }
+    }
+
+    // Arrow positions
+
+    var arrowLeft = document.querySelector('.arrow-left');
+    var arrowRight = document.querySelector('.arrow-right');
+
+    if (arrowLeft && !arrowRight) {
+        arrowLeft.addEventListener('mouseover', function () {
+        var thumbnailLeft = document.querySelector('.hover-thumbnail.thumbnail-left');
+        if (thumbnailLeft) {
+            thumbnailLeft.style.display = 'block';
+            thumbnailLeft.style.top = '-80px';
+            thumbnailLeft.style.left = (arrowLeft ? '-55px' : '-55px');
+        }
+        });
+
+        arrowLeft.addEventListener('mouseout', function () {
+        var thumbnailLeft = document.querySelector('.hover-thumbnail.thumbnail-left');
+        if (thumbnailLeft) {
+            thumbnailLeft.style.display = 'none';
+        }
+        });
     }
 });
