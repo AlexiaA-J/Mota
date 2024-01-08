@@ -49,7 +49,12 @@ add_filter('wpcf7_autop_or_not', '__return_false');
 // add_filter( 'wpcf7_ajax_loader', '__return_false' );
 
 
-
+function mota_supports()
+{
+    // Ajouter la prise en charge des images mises en avant
+    add_theme_support('post-thumbnails');
+}
+add_action('after_setup_theme', 'mota_supports');
 
 
 remove_action( 'shutdown', 'wp_ob_end_flush_all', 1 );
