@@ -39,7 +39,7 @@ get_header();
                                 <a href="<?php echo get_permalink($previouspost); ?>" class="arrow-link arrow-left">
                                     <img class="arrow arrow-left" src="<?php echo get_template_directory_uri(); ?>/assets/images/arrow-left.svg" alt="Arrow for previous picture">
                                     <div class="hover-thumbnail thumbnail-left">
-                                        <?php echo wp_get_attachment_image($previous_photo['ID'], array(81, 71)); ?>
+                                    <img src="<?php echo get_the_post_thumbnail_url($previouspost->ID, array(81, 71)) ?>" alt="Photo précédente">
                                     </div>
                                 </a>
                             <?php endif; ?>
@@ -48,7 +48,7 @@ get_header();
                                 <a href="<?php echo get_permalink($nextpost); ?>" class="arrow-link arrow-right">
                                     <img class="arrow arrow-right" src="<?php echo get_template_directory_uri(); ?>/assets/images/arrow-right.svg" alt="Arrow for next picture">
                                     <div class="hover-thumbnail thumbnail-right">
-                                        <?php echo wp_get_attachment_image($next_photo['ID'], array(81, 71)); ?>
+                                        <img src="<?php echo get_the_post_thumbnail_url($nextpost->ID, array(81, 71)) ?>" alt="Photo suivante">
                                     </div>
                                 </a>
                             <?php endif; ?>
@@ -63,6 +63,39 @@ get_header();
                 <div class="gallery">
                     <p class="you-may-also-like">VOUS AIMEREZ AUSSI</p>
                     <div class="gallery-container">
+                        
+                        <?php
+                        $current_post_id = get_the_ID();
+                        $current_category = get_the_terms(get_the_ID(), 'category');
+                        $category_name = $current_category ? $current_category[0]->name : '';
+
+                        $args = array(
+                            'post_type' => 'photo',
+                            'category_name' => $category_name,
+                            'posts_per_page' => 2,
+                            'orderby' => 'rand',
+                            'post__not_in'   => array($current_post_id),
+                        );
+
+                        $query = new WP_Query($args);
+                        if ($query->have_posts()){
+                            while ($query->have_posts()) : $query->the_post();
+                            $custom_image = get_field('photo');
+
+                                if ($custom_image) {
+                                    ?>
+                                    <a href="<?php echo get_the_permalink(); ?>">
+                                        <img src="<?php echo $custom_image['url']; ?>" alt="Photo de la même catégorie">
+                                    </a>
+                                    <?php
+                                }
+                            endwhile;
+                        } else {
+                            ?> <p> Cette catégorie n'a pas d'autres photos. </p> <?php
+                        }
+                        wp_reset_postdata();
+                        ?>
+
                     </div>
                 </div>
             </div>
