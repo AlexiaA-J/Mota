@@ -32,6 +32,48 @@ get_header();
     ?>
     </div>
 </div>
+<div class="filters">
+    <div class="categories-formats">
+        <div class="categories-filter">
+            <select id="categories">
+                <option value="all" hidden></option>
+                <option value="all" selected>CATÉGORIES</option>
+                    <?php
+                        $categories = get_terms(array(
+                            "taxonomy" => "category",
+                            "hide_empty" => false,
+                        ));
+                        foreach ($categories as $category) {
+                            echo '<option value="' . $category->slug . '">' . mb_convert_case($category->name, MB_CASE_TITLE, "UTF-8") . '</option>';
+                        }
+                    ?>
+            </select>
+        </div>
+        <div class="formats-filter">
+            <select id="formats">
+                <option value="all" hidden></option>
+                <option value="all" selected>FORMATS</option>
+                    <?php
+                        $formats = get_terms(array(
+                            "taxonomy" => "format",
+                            "hide_empty" => false,
+                        ));
+                        foreach ($formats as $format) {
+                            echo '<option value="' . $format->slug . '">' . mb_convert_case($format->name, MB_CASE_TITLE, "UTF-8") . '</option>';
+                        }
+                    ?>
+            </select>
+        </div>
+    </div>
+    <div class="sort-date">
+        <select id="sort-by-date">
+            <option value="all" hidden></option>
+            <option value="all" selected>TRIER PAR</option>
+            <option value="DESC">Les Plus Récentes</option>
+            <option value="ASC">Les Plus Anciennes</option>
+        </select>
+    </div>
+</div>
 <?php
 get_footer();
 ?>
