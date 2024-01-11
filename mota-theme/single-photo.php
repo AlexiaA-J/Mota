@@ -3,7 +3,6 @@ get_header();
 ?>
     <main id="primary" class="site-main">
         <div class="page-content">
-        <!-- div Superieur -->
             <div class="main-content">
                 <div class="single-photo-content">
                     <div class="infos-container">
