@@ -304,6 +304,7 @@ a, a:visited {
 .hero {
   width: 100%;
   position: relative;
+  margin-bottom: 80px;
 }
 .hero__title {
   font-size: 96px;
@@ -336,6 +337,42 @@ a, a:visited {
     -webkit-text-stroke: 1px white;
     height: auto;
   }
+}
+
+.filters {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.filters .selector {
+  width: 260px;
+  height: 43px !important;
+  background-color: white;
+  border-radius: 8px;
+  border: 1px solid darkgray;
+  font-family: "Poppins";
+}
+.filters .categories-formats {
+  display: flex;
+  flex-direction: row;
+  gap: 36px;
+}
+
+/* Ajouter du CSS pour personnaliser Select2 */
+.select2-container--default .select2-selection--single {
+  border: 1px solid #ced4da;
+  border-radius: 8px;
+}
+
+/* Ajouter du CSS pour personnaliser Select2 dropdown */
+.select2-container--default .select2-results__option:first-child {
+  background-color: #FFD6D6 !important;
+  color: #000 !important;
+}
+
+.select2-container--default .select2-results__option:not(:first-child)[aria-selected=true] {
+  background-color: #E00000 !important;
+  color: #fff !important;
 }
 
 .page-content {

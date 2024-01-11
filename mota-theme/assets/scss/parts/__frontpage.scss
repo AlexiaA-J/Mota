@@ -1,6 +1,7 @@
 .hero {
     width: 100%;
     position: relative;
+    margin-bottom: 80px;
     
     &__title {
         font-size: 96px;
@@ -32,5 +33,26 @@
                 height:auto;
             }
           }
+    }
+}
+
+.filters {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .selector {
+        width: 260px;
+        height: 43px !important;
+        background-color: $background-color_2;
+        border-radius: 8px; 
+        border: 1px solid $background-color_4;
+        font-family: 'Poppins';
+    }
+
+    .categories-formats {
+        display: flex;
+        flex-direction: row;
+        gap:36px;
     }
 }
