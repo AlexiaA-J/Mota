@@ -35,8 +35,7 @@ get_header();
 <div class="filters">
     <div class="categories-formats">
         <div class="categories-filter">
-            <select id="categories">
-                <option value="all" hidden></option>
+            <select id="categories" class="selector">
                 <option value="all" selected>CATÉGORIES</option>
                     <?php
                         $categories = get_terms(array(
@@ -50,8 +49,7 @@ get_header();
             </select>
         </div>
         <div class="formats-filter">
-            <select id="formats">
-                <option value="all" hidden></option>
+            <select id="formats" class="selector">
                 <option value="all" selected>FORMATS</option>
                     <?php
                         $formats = get_terms(array(
@@ -65,9 +63,8 @@ get_header();
             </select>
         </div>
     </div>
-    <div class="sort-date">
-        <select id="sort-by-date">
-            <option value="all" hidden></option>
+    <div class="sort-date" >
+        <select id="sort-by-date" class="selector">
             <option value="all" selected>TRIER PAR</option>
             <option value="DESC">Les Plus Récentes</option>
             <option value="ASC">Les Plus Anciennes</option>
