@@ -1,83 +1,83 @@
-// DOMContentLoaded related functions
-
-document.addEventListener("DOMContentLoaded", function() {
+$(document).ready(function() {
 
     // Menu nav burger
 
-    const menuBurger = document.getElementById("menu_burger");
-    const openBtn = document.getElementById("openBtn");
-    const closeBtn = document.getElementById("closeBtn");
+    const menuBurger = $("#menu_burger");
+    const openBtn = $("#openBtn");
+    const closeBtn = $("#closeBtn");
 
-    openBtn.onclick = openMenu;
-    closeBtn.onclick = closeMenu;
+    openBtn.click(openMenu);
+    closeBtn.click(closeMenu);
 
     function openMenu() {
-        menuBurger.classList.add("active");
+        menuBurger.addClass("active");
     }
 
     function closeMenu() {
-        menuBurger.classList.remove("active");
+        menuBurger.removeClass("active");
     }
 
     // Contact form call from menu or single-photo button
 
-    const contactBtns = document.querySelectorAll(".menu-item-29 a, .contact-btn");
-    const modalForm = document.querySelector(".modal-overlay");
-    const modalContent = document.getElementById("wpcf7-f28-o1");
-    const formRefDiv = document.querySelector(".formRef");
+    const contactBtns = $(".menu-item-29 a, .contact-btn");
+    const modalForm = $(".modal-overlay");
+    const modalContent = $("#wpcf7-f28-o1");
+    const formRefDiv = $(".formRef");
 
-    contactBtns.forEach(contactBtn => {
-        contactBtn.onclick = openForm;
-    });
+    contactBtns.click(openForm);
 
     function openForm(event) {
         event.preventDefault();
-        const refValueElement = document.querySelector(".ref-value");
+        const refValueElement = $(".ref-value");
 
         // Check if ref-value element is present on the page
-        if (refValueElement) {
-            const refValue = refValueElement.textContent;
+        if (refValueElement.length) {
+            const refValue = refValueElement.text();
 
-            const inputField = formRefDiv.querySelector("input[name='your-subject']");
-            if (inputField) {
-                inputField.value = refValue;
+            const inputField = formRefDiv.find("input[name='your-subject']");
+            if (inputField.length) {
+                inputField.val(refValue.toUpperCase());
             }
-
-            const uppercaseValue = refValue.toUpperCase();
-
-            inputField.value = uppercaseValue;
         }
-        modalForm.classList.add("active");
-            document.addEventListener("click", closeFormOutside);
+        modalForm.addClass("active");
+            $(document).click(closeFormOutside);
     }
 
     function closeFormOutside(event) {
-        if (!modalContent.contains(event.target) && !Array.from(contactBtns).includes(event.target)) {
-            modalForm.classList.remove("active");
-            document.removeEventListener("click", closeFormOutside);
+        if (!modalContent.is(event.target) && !$.makeArray(contactBtns).includes(event.target)) {
+            modalForm.removeClass("active");
+            $(document).unbind("click", closeFormOutside);
         }
     }
 
     // Arrow positions
 
-    var arrowLeft = document.querySelector('.arrow-left');
-    var arrowRight = document.querySelector('.arrow-right');
+    var arrowLeft = $('.arrow-left');
+    var arrowRight = $('.arrow-right');
 
-    if (arrowLeft && !arrowRight) {
-        arrowLeft.addEventListener('mouseover', function () {
-        var thumbnailLeft = document.querySelector('.hover-thumbnail.thumbnail-left');
-        if (thumbnailLeft) {
-            thumbnailLeft.style.display = 'block';
-            thumbnailLeft.style.top = '-80px';
-            thumbnailLeft.style.left = (arrowLeft ? '-55px' : '-55px');
-        }
+    if (arrowLeft.length && !arrowRight.length) {
+        arrowLeft.mouseover(function() {
+            var thumbnailLeft = $('.hover-thumbnail.thumbnail-left');
+            if (thumbnailLeft.length) {
+                thumbnailLeft.css({
+                    display: 'block',
+                    top: '-80px',
+                    left: '-55px'
+                });
+            }
         });
 
-        arrowLeft.addEventListener('mouseout', function () {
-        var thumbnailLeft = document.querySelector('.hover-thumbnail.thumbnail-left');
-        if (thumbnailLeft) {
-            thumbnailLeft.style.display = 'none';
-        }
+        arrowLeft.mouseout(function() {
+            var thumbnailLeft = $('.hover-thumbnail.thumbnail-left');
+            if (thumbnailLeft.length) {
+                thumbnailLeft.css('display', 'none');
+            }
         });
     }
+
+    $(document).ready(function() {
+        $('.selector').select2({
+            dropdownPosition: 'below',
+        });
+    });
 });
