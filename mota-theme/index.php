@@ -80,6 +80,7 @@ get_header();
                     'posts_per_page' => 8,
                     'orderby' => 'date',
                     'order' => 'ASC',
+                    'post_status' => 'publish',
                     'paged' => $paged,
                 );
 
@@ -92,7 +93,7 @@ get_header();
                         if ($custom_image) {
                             ?>
                             <a href="<?php echo get_the_permalink(); ?>">
-                                <img src="<?php echo $custom_image['url']; ?>" alt="Photo de la même catégorie">
+                                <img src="<?php echo $custom_image['url']; ?>" alt="Photo">
                             </a>
                             <?php
                         }
@@ -101,7 +102,7 @@ get_header();
             ?>
         </div>
         <div class="btn-container">
-                <a class="load-more" href="<?php echo home_url('/'); ?>">
+                <a id="load-more" href="<?php echo home_url('/'); ?>">
                     <span class="btn more-btn">Charger plus</span>
                 </a>
             </div>
