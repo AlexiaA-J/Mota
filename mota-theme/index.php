@@ -32,7 +32,7 @@ get_header();
         ?>
         </div>
     </div>
-    <section class="gallery-home">
+    <div class="gallery-home">
         <div class="filters">
             <div class="categories-formats">
                 <div class="categories-filter">
@@ -88,25 +88,21 @@ get_header();
 
                 if ($query->have_posts()){
                     while ($query->have_posts()) : $query->the_post();
-                    $custom_image = get_field('photo');
-
-                        if ($custom_image) {
                             ?>
                             <a href="<?php echo get_the_permalink(); ?>">
-                                <img src="<?php echo $custom_image['url']; ?>" alt="Photo">
+                                <img src="<?php echo get_the_post_thumbnail_url(); ?>" alt="Photo">
                             </a>
                             <?php
-                        }
                     endwhile;
                 }
             ?>
         </div>
         <div class="btn-container">
-                <a id="load-more" href="<?php echo home_url('/'); ?>">
-                    <span class="btn more-btn">Charger plus</span>
-                </a>
-            </div>
-    </section>
+            <a id="load-more" href="<?php echo home_url('/'); ?>">
+                <span class="btn more-btn">Charger plus</span>
+            </a>
+        </div>
+    </div>
 </div>
 <?php
 get_footer();
