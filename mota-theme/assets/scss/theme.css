@@ -344,6 +344,7 @@ a, a:visited {
   }
 }
 .home-content .filters {
+  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -364,6 +365,7 @@ a, a:visited {
 }
 .home-content .gallery-home {
   max-width: 1250px;
+  width: 100%;
 }
 .home-content .gallery-home .gallery-container {
   max-width: 100%;
@@ -393,6 +395,10 @@ a, a:visited {
 }
 
 /* Ajouter du CSS pour personnaliser Select2 */
+.select2-selection__rendered {
+  font-family: "Poppins";
+}
+
 .select2-container--default .select2-selection--single {
   border: 1px solid #ced4da;
   border-radius: 8px;
