@@ -22,8 +22,14 @@ body {
     height: 50px;
     padding: 8px 15px;
     border-radius: 2px;
-    background: $background-color_3;
+    background-color: $background-color_3;
+    transition: background-color 1000ms, color 1000ms;
     border: none;
     cursor: pointer;
     align-self: center;
+    &:hover {
+      color: $color_3;
+      background-color: $background-color_1;
+      transition: background-color 1000ms, color 1000ms;
+    }
   }
