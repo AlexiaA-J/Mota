@@ -1,5 +1,7 @@
 $(document).ready(function() {
 
+    localStorage.clear();
+
     // Menu nav burger
 
     const menuBurger = $("#menu_burger");
@@ -80,4 +82,87 @@ $(document).ready(function() {
             dropdownPosition: 'below',
         });
     });
+
+    // LOAD MORE
+
+    const loadMore = $("#load-more");
+    let currentPage = 1;
+
+    loadMore.on('click', function(event) {
+        event.preventDefault();
+        currentPage++;
+
+        $.ajax({
+            type: 'POST',
+            url: './wp-admin/admin-ajax.php', // Use the absolute URL provided by WordPress
+            dataType: 'json',
+            data: {
+                action: 'load_more',
+                paged: currentPage,
+            },
+            success: function(response) {
+                $('.gallery-container').append(response.html);
+
+                if (!response.has_more_posts) {
+                    loadMore.hide();
+                } else {
+                    loadMore.show();
+                }
+            },
+        });
+    });
+
+    // Variables to track filter states
+    var activeCategory = 'all';
+    var activeFormat = 'all';
+    var activeSortByDate = 'all';
+
+    $('#categories').val(activeCategory);
+    $('#formats').val(activeFormat);
+    $('#sort-by-date').val(activeSortByDate);
+
+    // Function to check if any filters are active
+    function areFiltersActive() {
+        return activeCategory !== 'all' || activeFormat !== 'all' || activeSortByDate !== 'all';
+    }
+
+    // Event handler for filter changes
+    $('#categories, #formats, #sort-by-date').on('change', function() {
+        ajaxFilter();
+    });
+
+    function ajaxFilter() {
+        var category = $('#categories').val();
+        var format = $('#formats').val();
+        var sortByDate = $('#sort-by-date').val();
+
+        // Update active filter states
+        activeCategory = category;
+        activeFormat = format;
+        activeSortByDate = sortByDate;
+
+        // Hide the "Load More" button if filters are active
+        if (areFiltersActive()) {
+            $('#load-more').hide();
+        }
+
+        $.ajax({
+            type: 'POST',
+            url: './wp-admin/admin-ajax.php',
+            data: {
+                action: 'ajax_filter',
+                category: category,
+                format: format,
+                sortByDate: sortByDate
+            },
+            success: function(response) {
+                $('.gallery-container').html(response);
+
+                // Show the "Load More" button if no filters are active
+                if (!areFiltersActive()) {
+                    $('#load-more').show();
+                }
+            }
+        });
+    }
 });
