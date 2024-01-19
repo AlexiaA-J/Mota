@@ -62,6 +62,8 @@ add_action( 'shutdown', function() {
    while ( @ob_end_flush() );
 } );
 
+// LOAD MORE
+
 function load_more() {
     $paged = $_POST['paged'];
     $posts_per_page = 8;
@@ -99,6 +101,7 @@ add_action('wp_ajax_load_more', 'load_more');
 add_action('wp_ajax_nopriv_load_more', 'load_more');
 
 
+// FILTERS AND SORT
 
 function ajax_filter() {
     $category = isset($_POST['category']) ? $_POST['category'] : '';
