@@ -2,6 +2,8 @@
 
 @import "./parts/_variables";
 
+@import "./parts/_mixins";
+
 @import "./parts/_general.scss";
 
 @import "./parts/_header";
@@ -13,5 +15,7 @@
 @import "./parts/_select2";
 
 @import "./parts/_single-photo";
+
+@import "./parts/_lightbox";
 
 @import "./parts/_footer";

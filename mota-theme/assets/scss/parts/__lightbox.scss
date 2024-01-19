@@ -1,0 +1,66 @@
+.lightbox {
+    //display:none;
+	position: fixed;
+	z-index: 1000;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	background-color: rgba(0, 0, 0, 0.8)!important;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+	cursor: pointer;
+
+    &__close {
+        position: absolute;
+        top: 40px;
+        right: 18%;
+        font-size: 23px;
+        cursor: pointer;
+        color: #fff;
+        transform: rotate(0);
+        transition: transform 500ms;
+        @media screen and (max-width: 1140px) {
+            right: -8%;
+        }
+
+        &:hover {
+            transform: rotate(180deg);
+            transition: transform 500ms;
+        }
+    }
+
+    &__prev, &__next {
+        font-family: $font-family_1;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 18px;
+        letter-spacing: 0em;
+        text-align: left;
+    
+        position: absolute;
+        top: 50%;
+        transform: scale(1.0);
+        transition: transform 500ms, font-weight 500ms;
+    
+        cursor: pointer;
+        color: #fff;
+    
+        &:hover {
+            font-size: 15px;
+            font-weight: 900;
+            cursor: pointer;
+            transform: scale(1.2);
+            transition: transform 500ms, font-weight 500ms;
+        }
+    }
+
+    &__prev {
+        left: 15%;
+    }
+
+    &__next {
+        right: 15%;
+    }
+}
