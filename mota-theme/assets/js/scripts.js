@@ -46,7 +46,7 @@ $(document).ready(function() {
     }
 
     function closeFormOutside(event) {
-        if (!modalContent.is(event.target) && !$.makeArray(contactBtns).includes(event.target)) {
+        if (!$(event.target).closest(modalContent).length && !contactBtns.toArray().includes(event.target)) {
             modalForm.removeClass("active");
             $(document).unbind("click", closeFormOutside);
         }
@@ -77,11 +77,11 @@ $(document).ready(function() {
         });
     }
 
-    $(document).ready(function() {
+    // INITIALIZE SELECT2
+
         $('.selector').select2({
             dropdownPosition: 'below',
         });
-    });
 
     // LOAD MORE
 
