@@ -2,6 +2,10 @@
 
 .select2-selection__rendered{
   font-family: $font-family_2;
+
+  @media (max-width: 801px) {
+    font-size: 12px; 
+  }
 }
 
 .select2-container--default .select2-selection--single {

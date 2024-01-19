@@ -27,7 +27,7 @@
 
         @media (max-width: 801px){
             width: 286px;
-            height: 583px; 
+            height: auto; 
             overflow: hidden;
         }
     }
@@ -128,4 +128,8 @@
 
 .active {
     display: flex !important;
+}
+
+.wpcf7-response-output {
+    display: none;
 }
