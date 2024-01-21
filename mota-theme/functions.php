@@ -82,11 +82,20 @@ function load_more() {
 
     if ($ajaxposts->have_posts()) {
         while ($ajaxposts->have_posts()) : $ajaxposts->the_post();
-                $response .= '<a href="' . get_the_permalink() . '">';
-                $response .= '<img src="' . get_the_post_thumbnail_url() . '" alt="Photo">';
-                $response .= '</a>';
+            $response .= '<div class="photo-suggested">
+                            <img class="photo" src="' . get_the_post_thumbnail_url() . '" alt="Photo">
+                            <div class="overlay">
+                                <div class="overlay__full">
+                                    <a href="' . get_the_permalink() . '" class="open-photopage icon">
+                                        <img src="' . get_template_directory_uri() . '/assets/images/icon_eye.png" alt="Ouvrir la page de la photo">
+                                    </a>
+                                    <img class="fullsize icon" src="' . get_template_directory_uri() . '/assets/images/icon_fullscreen.png" alt="Voir l\'image en plein écran">
+                                    <p class="overlay-title overlay-text">'. get_the_title() .'</p>
+                                    <p class="overlay-category overlay-text">' . get_the_terms(get_the_ID(), 'category')[0]->name .'</p>                                    
+                                </div>
+                            </div>
+                        </div>';
         endwhile;
-
         // Check if there are more posts beyond the current page
         $has_more_posts = $ajaxposts->max_num_pages > $paged;
 
@@ -139,9 +148,19 @@ function ajax_filter() {
         ob_start();
         while ($query->have_posts()) : $query->the_post();
             ?>
-            <a href="<?php echo get_the_permalink(); ?>">
-                <img src="<?php echo get_the_post_thumbnail_url(); ?>" alt="Photo">
-            </a>
+            <div class="photo-suggested">
+                <img class="photo" src="<?php echo get_the_post_thumbnail_url(); ?>" alt="Photo">
+                <div class="overlay">
+                    <div class="overlay__full">
+                        <a href="<?php echo get_the_permalink(); ?>" class="open-photopage icon">
+                            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icon_eye.png" alt="Ouvrir la page de la photo">
+                        </a>
+                        <img class="fullsize icon" src="<?php echo get_template_directory_uri(); ?>/assets/images/icon_fullscreen.png" alt="Voir l'image en plein écran">
+                        <p class="overlay-title overlay-text"><?php echo get_the_title(); ?></p>
+                        <p class="overlay-category overlay-text"><?php echo get_the_terms(get_the_ID(), 'category')[0]->name; ?></p>                                    
+                    </div>
+                </div>
+            </div>
             <?php
         endwhile;
         $content = ob_get_clean();
