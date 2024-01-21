@@ -77,6 +77,10 @@ a, a:visited {
   transition: background-color 1000ms, color 1000ms;
 }
 
+.active {
+  display: flex !important;
+}
+
 .header {
   padding: 18px 145px;
   display: flex;
@@ -304,10 +308,6 @@ a, a:visited {
   }
 }
 
-.active {
-  display: flex !important;
-}
-
 .wpcf7-response-output {
   display: none;
 }
@@ -411,16 +411,81 @@ a, a:visited {
     grid-template-columns: repeat(1, 1fr);
   }
 }
-.home-content .gallery-home .gallery-container img {
+.home-content .gallery-home .gallery-container .photo-suggested {
+  position: relative;
+}
+.home-content .gallery-home .gallery-container .photo-suggested:hover .overlay {
+  opacity: 1;
+  transition: opacity 500ms ease-in-out;
+}
+.home-content .gallery-home .gallery-container .photo-suggested .photo {
   width: 100%;
   height: 55vh;
   -o-object-fit: cover;
      object-fit: cover;
 }
 @media (max-width: 801px) {
-  .home-content .gallery-home .gallery-container img {
+  .home-content .gallery-home .gallery-container .photo-suggested .photo {
     height: 40vh;
   }
+}
+.home-content .gallery-home .gallery-container .photo-suggested .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  opacity: 0;
+  transition: opacity 500ms ease-in-out;
+}
+.home-content .gallery-home .gallery-container .photo-suggested .overlay__full {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.home-content .gallery-home .gallery-container .photo-suggested .overlay__full .open-photopage {
+  position: absolute;
+  top: 48%;
+  left: 45%;
+  transform: scale(1);
+  transition: transform 500ms;
+}
+.home-content .gallery-home .gallery-container .photo-suggested .overlay__full .open-photopage:hover {
+  cursor: pointer;
+  transform: scale(1.2);
+  transition: transform 500ms;
+}
+.home-content .gallery-home .gallery-container .photo-suggested .overlay__full .fullsize {
+  width: 35px;
+  height: 35px;
+  position: absolute;
+  right: 2%;
+  top: 2%;
+  transform: scale(1) rotate(0);
+  transition: transform 500ms;
+}
+.home-content .gallery-home .gallery-container .photo-suggested .overlay__full .fullsize:hover {
+  cursor: pointer;
+  transform: scale(1.2) rotate(180deg);
+  transition: transform 500ms;
+}
+.home-content .gallery-home .gallery-container .photo-suggested .overlay__full .overlay-text {
+  color: white;
+  font-family: "Poppins";
+  font-size: 14px;
+  text-transform: uppercase;
+}
+.home-content .gallery-home .gallery-container .photo-suggested .overlay__full .overlay-title {
+  position: absolute;
+  bottom: 1%;
+  left: 3%;
+}
+.home-content .gallery-home .gallery-container .photo-suggested .overlay__full .overlay-category {
+  position: absolute;
+  bottom: 1%;
+  right: 3%;
 }
 .home-content .btn-container {
   display: flex;
@@ -664,6 +729,7 @@ a, a:visited {
 }
 
 .lightbox {
+  display: none;
   position: fixed;
   z-index: 1000;
   top: 0;
