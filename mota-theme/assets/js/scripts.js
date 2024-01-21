@@ -165,4 +165,23 @@ $(document).ready(function() {
             }
         });
     }
+
+
+    // OPEN LIGHTBOX
+
+    $(document).on('click', '.fullsize', openLightbox);
+
+        const lightbox = $(".lightbox");
+        const closeIcon = $(".lightbox__close");
+
+        closeIcon.click(closeLightbox);
+
+        function openLightbox() {
+            console.log("It works");
+            lightbox.addClass("active");
+        }
+
+        function closeLightbox() {
+            lightbox.removeClass("active");
+    }
 });
