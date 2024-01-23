@@ -121,7 +121,6 @@ $(document).ready(function() {
     $('#formats').val(activeFormat);
     $('#sort-by-date').val(activeSortByDate);
 
-    // Function to check if any filters are active
     function areFiltersActive() {
         return activeCategory !== 'all' || activeFormat !== 'all' || activeSortByDate !== 'all';
     }
@@ -169,19 +168,24 @@ $(document).ready(function() {
 
     // OPEN LIGHTBOX
 
-    $(document).on('click', '.fullsize', openLightbox);
+    $(document).on('click', '.fullsize', function() {
+        openLightbox($(this).closest('.photo-suggested'));
+    });
 
-        const lightbox = $(".lightbox");
-        const closeIcon = $(".lightbox__close");
+    const lightbox = $(".lightbox");
+    const closeIcon = $(".lightbox__close");
 
-        closeIcon.click(closeLightbox);
+    closeIcon.click(closeLightbox);
 
-        function openLightbox() {
-            console.log("It works");
-            lightbox.addClass("active");
-        }
+    function openLightbox(photo) {
+        const photoSrc = photo.data('photo-src');
 
-        function closeLightbox() {
-            lightbox.removeClass("active");
+        $('.lightbox-photo').attr('src', photoSrc);
+
+        lightbox.addClass("active");
+    }
+
+    function closeLightbox() {
+        lightbox.removeClass("active");
     }
 });
