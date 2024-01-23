@@ -82,7 +82,7 @@ function load_more() {
 
     if ($ajaxposts->have_posts()) {
         while ($ajaxposts->have_posts()) : $ajaxposts->the_post();
-            $response .= '<div class="photo-suggested">
+            $response .= '<div class="photo-suggested" data-photo-src="' . get_the_post_thumbnail_url() . '">
                             <img class="photo" src="' . get_the_post_thumbnail_url() . '" alt="Photo">
                             <div class="overlay">
                                 <div class="overlay__full">
@@ -117,6 +117,47 @@ function ajax_filter() {
     $format = isset($_POST['format']) ? $_POST['format'] : '';
     $sortByDate = isset($_POST['sortByDate']) ? $_POST['sortByDate'] : '';
 
+    // Check if any filters are selected
+    if ($category == 'all' && $format == 'all' && $sortByDate == 'all') {
+        // If no filters are selected, revert to the original WP_Query
+        $paged = get_query_var('paged', 1);
+        $gallery_args = array(
+            'post_type' => 'photo',
+            'posts_per_page' => 8,
+            'orderby' => 'date',
+            'order' => 'ASC',
+            'post_status' => 'publish',
+            'paged' => $paged,
+        );
+
+        $query = new WP_Query($gallery_args);
+
+        if ($query->have_posts()) {
+            ob_start();
+            while ($query->have_posts()) : $query->the_post();
+            ?>
+            <div class="photo-suggested" data-photo-src="<?php echo get_the_post_thumbnail_url(); ?>">
+                <img class="photo" src="<?php echo get_the_post_thumbnail_url(); ?>" alt="Photo">
+                <div class="overlay">
+                    <div class="overlay__full">
+                        <a href="<?php echo get_the_permalink(); ?>" class="open-photopage icon">
+                            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icon_eye.png" alt="Ouvrir la page de la photo">
+                        </a>
+                        <img class="fullsize icon" src="<?php echo get_template_directory_uri(); ?>/assets/images/icon_fullscreen.png" alt="Voir l'image en plein écran">
+                        <p class="overlay-title overlay-text"><?php echo get_the_title(); ?></p>
+                        <p class="overlay-category overlay-text"><?php echo get_the_terms(get_the_ID(), 'category')[0]->name; ?></p>                                    
+                    </div>
+                </div>
+            </div>
+            <?php
+            endwhile;
+            $content = ob_get_clean();
+            echo $content;
+        }
+
+        die();
+    }
+
     $gallery_args = array(
         'post_type' => 'photo',
         'posts_per_page' => -1,
@@ -148,7 +189,7 @@ function ajax_filter() {
         ob_start();
         while ($query->have_posts()) : $query->the_post();
             ?>
-            <div class="photo-suggested">
+            <div class="photo-suggested" data-photo-src="<?php echo get_the_post_thumbnail_url(); ?>">
                 <img class="photo" src="<?php echo get_the_post_thumbnail_url(); ?>" alt="Photo">
                 <div class="overlay">
                     <div class="overlay__full">
