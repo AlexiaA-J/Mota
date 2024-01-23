@@ -30,6 +30,12 @@
             height: auto; 
             overflow: hidden;
         }
+
+        @media (max-width: 359px){
+            width: 250px;
+            height: auto; 
+            overflow: hidden;
+        }
     }
       
     .imgForm {
@@ -74,6 +80,11 @@
             width: 190px;
             height: 40px;
         }
+
+        @media (max-width: 359px) {
+            width: 180px;
+            height: 35px;
+        }
     }
       
     .wpcf7-textarea{
@@ -88,7 +99,11 @@
 
         @media (max-width: 801px){
             width: 190px;
-            height: 149px;
+        }
+
+        @media (max-width: 359px) {
+            width: 180px;
+            height: 100px;
         }
     }
       
