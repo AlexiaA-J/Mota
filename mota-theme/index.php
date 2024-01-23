@@ -89,7 +89,7 @@ get_header();
                 if ($query->have_posts()){
                     while ($query->have_posts()) : $query->the_post();
                             ?>
-                            <div class="photo-suggested" data-photo-id="<?php echo get_the_ID(); ?>">
+                            <div class="photo-suggested" data-photo-src="<?php echo get_the_post_thumbnail_url(); ?>">
                                 <img class="photo" src="<?php echo get_the_post_thumbnail_url(); ?>" alt="Photo">
                                 <div class="overlay">
                                     <div class="overlay__full">
