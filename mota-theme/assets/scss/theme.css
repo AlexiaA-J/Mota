@@ -875,6 +875,28 @@ a, a:visited {
   background-position: center;
   cursor: pointer;
 }
+.lightbox__category, .lightbox__ref {
+  color: white;
+  position: absolute;
+  bottom: 10%;
+}
+@media (max-width: 1024px) {
+  .lightbox__category, .lightbox__ref {
+    bottom: 0%;
+  }
+}
+@media (max-width: 481px) {
+  .lightbox__category, .lightbox__ref {
+    bottom: 0.5%;
+  }
+}
+.lightbox__category {
+  right: 19%;
+}
+.lightbox__ref {
+  left: 19%;
+  text-transform: uppercase;
+}
 .lightbox__close {
   position: absolute;
   top: 5%;

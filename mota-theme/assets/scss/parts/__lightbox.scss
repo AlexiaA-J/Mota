@@ -14,7 +14,28 @@
 	background-position: center;
 	cursor: pointer;
 
-    
+    &__category, &__ref {
+        color: $color_3;
+        position: absolute;
+        bottom: 10%;
+
+        @media (max-width: 1024px) {
+            bottom: 0%;
+        }
+
+        @media (max-width: 481px) {
+            bottom: 0.5%;
+        }
+    }
+
+    &__category {
+        right: 19%;
+    }
+
+    &__ref {
+        left: 19%;
+        text-transform: uppercase;
+    }    
 
     &__close {
         position: absolute;
