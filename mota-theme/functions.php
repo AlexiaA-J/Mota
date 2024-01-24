@@ -27,10 +27,20 @@ add_action('after_setup_theme', 'register_my_menus');
 
 // Enqueuing
 
-add_action( 'wp_enqueue_scripts', 'mota_enqueue_styles' );
+add_action('wp_enqueue_scripts', 'mota_enqueue_styles');
 function mota_enqueue_styles() {
-    wp_enqueue_style( 'parent-style', get_template_directory_uri() . '/assets/scss/theme.css' );
-    wp_enqueue_script( 'script', get_template_directory_uri() . '/assets/js/scripts.js', array(), true );
+    wp_enqueue_style('parent-style', get_template_directory_uri() . '/assets/scss/theme.css');
+    wp_enqueue_script('jquery', 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js', array(), '3.7.1', true);
+    wp_enqueue_style('select2-style', 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css');
+    wp_enqueue_script('select2-script', 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js', array('jquery'), '4.1.0-rc.0', true);
+    wp_enqueue_script('menu-script', get_template_directory_uri() . '/assets/js/modules/menu.js', array('jquery'), null, true);
+    wp_enqueue_script('modal-script', get_template_directory_uri() . '/assets/js/modules/modal.js', array('jquery'), null, true);
+    wp_enqueue_script('arrow-positions-script', get_template_directory_uri() . '/assets/js/modules/arrowPositions.js', array('jquery'), null, true);
+    wp_enqueue_script('select-2', get_template_directory_uri() . '/assets/js/modules/select2.js', array('jquery'), null, true);
+    wp_enqueue_script('load-more', get_template_directory_uri() . '/assets/js/modules/loadMore.js', array('jquery'), null, true);
+    wp_enqueue_script('filters', get_template_directory_uri() . '/assets/js/modules/filters.js', array('jquery'), null, true);
+    wp_enqueue_script('lightbox', get_template_directory_uri() . '/assets/js/modules/lightbox.js', array('jquery'), null, true);
+    wp_enqueue_script('script', get_template_directory_uri() . '/assets/js/scripts.js', array('jquery'), null, true);
 }
 
 // Add text to footer menu
@@ -82,7 +92,11 @@ function load_more() {
 
     if ($ajaxposts->have_posts()) {
         while ($ajaxposts->have_posts()) : $ajaxposts->the_post();
-            $response .= '<div class="photo-suggested" data-photo-src="' . get_the_post_thumbnail_url() . '">
+            $response .= '<div class="photo-suggested" data-photo-src="' . esc_url(get_the_post_thumbnail_url()) . '"
+                            data-photo-prev="' . esc_url(get_permalink(get_previous_post())) . '" 
+                            data-photo-next="' . esc_url(get_permalink(get_next_post())) . '"
+                            data-photo-ref="' . esc_attr(get_field('ref')) . '"
+                            data-photo-category="' . esc_attr(get_the_terms(get_the_ID(), 'category')[0]->name) . '">
                             <img class="photo" src="' . get_the_post_thumbnail_url() . '" alt="Photo">
                             <div class="overlay">
                                 <div class="overlay__full">
@@ -118,45 +132,6 @@ function ajax_filter() {
     $sortByDate = isset($_POST['sortByDate']) ? $_POST['sortByDate'] : '';
 
     // Check if any filters are selected
-    if ($category == 'all' && $format == 'all' && $sortByDate == 'all') {
-        // If no filters are selected, revert to the original WP_Query
-        $paged = get_query_var('paged', 1);
-        $gallery_args = array(
-            'post_type' => 'photo',
-            'posts_per_page' => 8,
-            'orderby' => 'date',
-            'order' => 'ASC',
-            'post_status' => 'publish',
-            'paged' => $paged,
-        );
-
-        $query = new WP_Query($gallery_args);
-
-        if ($query->have_posts()) {
-            ob_start();
-            while ($query->have_posts()) : $query->the_post();
-            ?>
-            <div class="photo-suggested" data-photo-src="<?php echo get_the_post_thumbnail_url(); ?>">
-                <img class="photo" src="<?php echo get_the_post_thumbnail_url(); ?>" alt="Photo">
-                <div class="overlay">
-                    <div class="overlay__full">
-                        <a href="<?php echo get_the_permalink(); ?>" class="open-photopage icon">
-                            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icon_eye.png" alt="Ouvrir la page de la photo">
-                        </a>
-                        <img class="fullsize icon" src="<?php echo get_template_directory_uri(); ?>/assets/images/icon_fullscreen.png" alt="Voir l'image en plein écran">
-                        <p class="overlay-title overlay-text"><?php echo get_the_title(); ?></p>
-                        <p class="overlay-category overlay-text"><?php echo get_the_terms(get_the_ID(), 'category')[0]->name; ?></p>                                    
-                    </div>
-                </div>
-            </div>
-            <?php
-            endwhile;
-            $content = ob_get_clean();
-            echo $content;
-        }
-
-        die();
-    }
 
     $gallery_args = array(
         'post_type' => 'photo',
@@ -189,7 +164,11 @@ function ajax_filter() {
         ob_start();
         while ($query->have_posts()) : $query->the_post();
             ?>
-            <div class="photo-suggested" data-photo-src="<?php echo get_the_post_thumbnail_url(); ?>">
+            <div class="photo-suggested" data-photo-src="<?php echo get_the_post_thumbnail_url(); ?>"
+                                        data-photo-prev="<?php echo esc_url(get_permalink(get_previous_post())); ?>" 
+                                        data-photo-next="<?php echo esc_url(get_permalink(get_next_post())); ?>"
+                                        data-photo-ref="<?php echo esc_attr(get_field('ref')); ?>"
+                                        data-photo-category="<?php echo esc_attr(get_the_terms(get_the_ID(), 'category')[0]->name); ?>">
                 <img class="photo" src="<?php echo get_the_post_thumbnail_url(); ?>" alt="Photo">
                 <div class="overlay">
                     <div class="overlay__full">
