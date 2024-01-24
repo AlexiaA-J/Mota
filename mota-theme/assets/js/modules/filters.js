@@ -16,7 +16,6 @@ function initializeFilters() {
     // Event handler for filter changes
     jQuery('#categories, #formats, #sort-by-date').on('change', function() {
         ajaxFilter();
-        checkIfMorePosts();
     });
 
     function ajaxFilter() {
