@@ -81,6 +81,16 @@ a, a:visited {
   display: flex !important;
 }
 
+@keyframes fadeInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
 .header {
   padding: 18px 145px;
   display: flex;
@@ -120,9 +130,6 @@ a, a:visited {
 .header__navMobile {
   display: none;
 }
-.header__navMobile .active {
-  display: block !important;
-}
 .header__navMobile #openBtn {
   position: absolute;
 }
@@ -137,11 +144,16 @@ a, a:visited {
   display: none;
   position: fixed;
   top: 0;
-  left: 0;
+  right: 0; /* Start off-screen on the right */
   width: 100%;
   height: 100%;
   background-color: #E00000;
   z-index: 1000;
+}
+.header__navMobile #menu_burger.active {
+  display: block !important;
+  animation: fadeInRight 1000ms;
+  transition: transform 400ms cubic-bezier(0.23, 1, 0.32, 1);
 }
 .header__navMobile .nav_burger .close {
   font-size: 50px;
@@ -393,16 +405,17 @@ a, a:visited {
   }
 }
 .home-content .gallery-home {
-  padding: 0 140px;
+  width: 80%;
 }
 @media (max-width: 1140px) {
   .home-content .gallery-home {
-    padding: 0 85px;
+    width: 85%;
   }
 }
 @media (max-width: 801px) {
   .home-content .gallery-home {
     padding: 0;
+    width: 100%;
   }
 }
 .home-content .gallery-home .filters {
@@ -415,7 +428,7 @@ a, a:visited {
 @media (max-width: 1024px) {
   .home-content .gallery-home .filters {
     flex-direction: column;
-    justify-content: baseline;
+    justify-content: flex-start;
     align-items: center;
     gap: 8px;
     margin-bottom: 24px;
@@ -470,82 +483,6 @@ a, a:visited {
     padding: 10px 29px;
     grid-template-columns: repeat(1, 1fr);
   }
-}
-.home-content .gallery-home .gallery-container .photo-suggested {
-  position: relative;
-}
-.home-content .gallery-home .gallery-container .photo-suggested:hover .overlay {
-  opacity: 1;
-  transition: opacity 500ms ease-in-out;
-}
-.home-content .gallery-home .gallery-container .photo-suggested .photo {
-  width: 100%;
-  height: 45vh;
-  -o-object-fit: cover;
-     object-fit: cover;
-}
-@media (max-width: 801px) {
-  .home-content .gallery-home .gallery-container .photo-suggested .photo {
-    height: 40vh;
-  }
-}
-.home-content .gallery-home .gallery-container .photo-suggested .overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 999;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.6);
-  opacity: 0;
-  transition: opacity 500ms ease-in-out;
-}
-.home-content .gallery-home .gallery-container .photo-suggested .overlay__full {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-.home-content .gallery-home .gallery-container .photo-suggested .overlay__full .open-photopage {
-  position: absolute;
-  top: 48%;
-  left: 45%;
-  transform: scale(1);
-  transition: transform 500ms;
-}
-.home-content .gallery-home .gallery-container .photo-suggested .overlay__full .open-photopage:hover {
-  cursor: pointer;
-  transform: scale(1.2);
-  transition: transform 500ms;
-}
-.home-content .gallery-home .gallery-container .photo-suggested .overlay__full .fullsize {
-  width: 35px;
-  height: 35px;
-  position: absolute;
-  right: 2%;
-  top: 2%;
-  transform: scale(1) rotate(0);
-  transition: transform 500ms;
-}
-.home-content .gallery-home .gallery-container .photo-suggested .overlay__full .fullsize:hover {
-  cursor: pointer;
-  transform: scale(1.2) rotate(180deg);
-  transition: transform 500ms;
-}
-.home-content .gallery-home .gallery-container .photo-suggested .overlay__full .overlay-text {
-  color: white;
-  font-family: "Poppins";
-  font-size: 14px;
-  text-transform: uppercase;
-}
-.home-content .gallery-home .gallery-container .photo-suggested .overlay__full .overlay-title {
-  position: absolute;
-  bottom: 1%;
-  left: 3%;
-}
-.home-content .gallery-home .gallery-container .photo-suggested .overlay__full .overlay-category {
-  position: absolute;
-  bottom: 1%;
-  right: 3%;
 }
 .home-content .btn-container {
   display: flex;
@@ -818,14 +755,14 @@ a, a:visited {
   grid-template-columns: repeat(2, 1fr);
   gap: 20px; /* Écart horizontal */
 }
-.page-content .gallery .gallery-container img {
+.page-content .gallery .gallery-container .photo {
   width: 100%;
   height: 40vh;
   -o-object-fit: cover;
      object-fit: cover;
 }
 @media (max-width: 801px) {
-  .page-content .gallery .gallery-container img {
+  .page-content .gallery .gallery-container .photo {
     height: 40vh;
   }
 }
@@ -857,6 +794,83 @@ a, a:visited {
   .page-content .btn-container {
     display: none;
   }
+}
+
+.photo-suggested {
+  position: relative;
+}
+.photo-suggested:hover .overlay {
+  opacity: 1;
+  transition: opacity 500ms ease-in-out;
+}
+.photo-suggested .photo {
+  width: 100%;
+  height: 45vh;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+@media (max-width: 801px) {
+  .photo-suggested .photo {
+    height: 40vh;
+  }
+}
+.photo-suggested .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  opacity: 0;
+  transition: opacity 500ms ease-in-out;
+}
+.photo-suggested .overlay__full {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.photo-suggested .overlay__full .open-photopage {
+  position: absolute;
+  top: 48%;
+  left: 45%;
+  transform: scale(1);
+  transition: transform 500ms;
+}
+.photo-suggested .overlay__full .open-photopage:hover {
+  cursor: pointer;
+  transform: scale(1.2);
+  transition: transform 500ms;
+}
+.photo-suggested .overlay__full .fullsize {
+  width: 35px;
+  height: 35px;
+  position: absolute;
+  right: 2%;
+  top: 2%;
+  transform: scale(1) rotate(0);
+  transition: transform 500ms;
+}
+.photo-suggested .overlay__full .fullsize:hover {
+  cursor: pointer;
+  transform: scale(1.2) rotate(180deg);
+  transition: transform 500ms;
+}
+.photo-suggested .overlay__full .overlay-text {
+  color: white;
+  font-family: "Poppins";
+  font-size: 14px;
+  text-transform: uppercase;
+}
+.photo-suggested .overlay__full .overlay-title {
+  position: absolute;
+  bottom: 1%;
+  left: 3%;
+}
+.photo-suggested .overlay__full .overlay-category {
+  position: absolute;
+  bottom: 1%;
+  right: 3%;
 }
 
 .lightbox {

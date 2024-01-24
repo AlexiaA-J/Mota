@@ -40,10 +40,6 @@
     &__navMobile {
         display: none;
 
-        .active {
-            display: block !important;
-        }
-
         #openBtn {
             position: absolute;
 
@@ -62,11 +58,17 @@
             display: none;
             position: fixed;
             top: 0;
-            left: 0;
+            right: 0; /* Start off-screen on the right */
             width: 100%;
             height: 100%;
             background-color: $background-color_5;
             z-index: 1000;
+        }
+        
+        #menu_burger.active {
+            display: block !important;
+            animation: fadeInRight 1000ms;
+            transition: transform 400ms cubic-bezier(0.23, 1, 0.32, 1);
         }
 
         .nav_burger .close {
