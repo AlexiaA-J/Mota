@@ -79,15 +79,7 @@ get_header();
                         $query = new WP_Query($args);
                         if ($query->have_posts()){
                             while ($query->have_posts()) : $query->the_post();
-                            $custom_image = get_field('photo');
-
-                                if ($custom_image) {
-                                    ?>
-                                    <a href="<?php echo get_the_permalink(); ?>">
-                                        <img src="<?php echo $custom_image['url']; ?>" alt="Photo de la même catégorie">
-                                    </a>
-                                    <?php
-                                }
+                                get_template_part('assets/template-parts/photo-block');
                             endwhile;
                         } else {
                             ?> <p> Cette catégorie n'a pas d'autres photos. </p> <?php
