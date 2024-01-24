@@ -1,9 +1,9 @@
 // FILTERS
 
 function initializeFilters() {
-    var activeCategory = 'all';
-    var activeFormat = 'all';
-    var activeSortByDate = 'all';
+    let activeCategory = 'all';
+    let activeFormat = 'all';
+    let activeSortByDate = 'all';
 
     jQuery('#categories').val(activeCategory);
     jQuery('#formats').val(activeFormat);
@@ -19,9 +19,9 @@ function initializeFilters() {
     });
 
     function ajaxFilter() {
-        var category = jQuery('#categories').val();
-        var format = jQuery('#formats').val();
-        var sortByDate = jQuery('#sort-by-date').val();
+        let category = jQuery('#categories').val();
+        let format = jQuery('#formats').val();
+        let sortByDate = jQuery('#sort-by-date').val();
 
         // Update active filter states
         activeCategory = category;
@@ -37,7 +37,7 @@ function initializeFilters() {
             type: 'POST',
             url: './wp-admin/admin-ajax.php',
             data: {
-                action: 'ajax_filter',
+                action: 'ajaxFilter',
                 category: category,
                 format: format,
                 sortByDate: sortByDate
@@ -46,9 +46,6 @@ function initializeFilters() {
                 jQuery('.gallery-container').html(response);
 
                 // Show the "Load More" button if no filters are active
-                if (!areFiltersActive()) {
-                    jQuery('#load-more').show();
-                }
             }
         });
     }

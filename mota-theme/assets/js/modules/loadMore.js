@@ -13,7 +13,7 @@ function initializeLoadMore() {
             url: './wp-admin/admin-ajax.php', // Use the absolute URL provided by WordPress
             dataType: 'json',
             data: {
-                action: 'load_more',
+                action: 'loadMore',
                 paged: currentPage,
             },
             success: function(response) {

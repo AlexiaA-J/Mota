@@ -17,7 +17,7 @@
         <?php //
             else : ?>
                 <h1 class="site-title"><?php bloginfo( 'name' ); ?></h1>
-        <?php endif; 
+        <?php endif;
         ?>
         <div class="header__navDesktop">
             <?php wp_nav_menu(array('theme_location' => 'main')); ?>
@@ -33,7 +33,7 @@
                     <?php //
                     else : ?>
                         <h1 class="site-title"><?php bloginfo( 'name' ); ?></h1>
-                    <?php endif; 
+                    <?php endif;
                     ?>
                     <a id="closeBtn" href="#" class="close">&times;</a>
                 </div>
@@ -49,3 +49,5 @@
             </a>
         </div>
     </header>
+
+    
