@@ -89,7 +89,11 @@ get_header();
                 if ($query->have_posts()){
                     while ($query->have_posts()) : $query->the_post();
                             ?>
-                            <div class="photo-suggested" data-photo-src="<?php echo get_the_post_thumbnail_url(); ?>">
+                            <div class="photo-suggested" data-photo-src="<?php echo get_the_post_thumbnail_url(); ?>" 
+                                                        data-photo-prev="<?php echo esc_url(get_permalink(get_previous_post())); ?>" 
+                                                        data-photo-next="<?php echo esc_url(get_permalink(get_next_post())); ?>"
+                                                        data-photo-ref="<?php echo esc_attr(get_field('ref')); ?>"
+                                                        data-photo-category="<?php echo esc_attr(get_the_terms(get_the_ID(), 'category')[0]->name); ?>">
                                 <img class="photo" src="<?php echo get_the_post_thumbnail_url(); ?>" alt="Photo">
                                 <div class="overlay">
                                     <div class="overlay__full">
