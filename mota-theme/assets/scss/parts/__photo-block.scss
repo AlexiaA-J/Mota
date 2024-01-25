@@ -11,7 +11,11 @@
         height: 45vh;
         object-fit: cover;
 
-        @media (max-width: 801px) {
+        @media (max-width: 1024px) {
+            height: 60vh;
+        }
+
+        @media (max-width: 481px) {
             height: 40vh;
         }
 

@@ -623,7 +623,7 @@ a, a:visited {
 }
 @media (max-width: 1024px) {
   .page-content .line {
-    width: 100vh;
+    width: 200vh;
     margin-left: -60px;
   }
 }
@@ -639,7 +639,7 @@ a, a:visited {
 }
 @media (max-width: 1024px) {
   .page-content .separator {
-    width: 100vh;
+    width: 200vh;
     margin-left: -60px;
   }
 }
@@ -671,6 +671,11 @@ a, a:visited {
   justify-content: space-between;
   margin: 0 45px 27px 0;
 }
+@media (max-width: 1140px) {
+  .page-content .contact-content .contact {
+    flex-direction: column;
+  }
+}
 @media (max-width: 1024px) {
   .page-content .contact-content .contact {
     flex-direction: column;
@@ -684,16 +689,28 @@ a, a:visited {
   font-family: "Poppins";
   align-self: center;
 }
+@media (max-width: 1140px) {
+  .page-content .contact-content .contact .contact-text {
+    margin-top: 20px;
+  }
+}
 @media (max-width: 1024px) {
   .page-content .contact-content .contact .contact-text {
+    margin-top: 14px;
     align-self: baseline;
   }
 }
 .page-content .contact-content .contact .contact-btn {
   width: 46%;
 }
+@media (max-width: 1140px) {
+  .page-content .contact-content .contact .contact-btn {
+    margin-bottom: 10px;
+  }
+}
 @media (max-width: 1024px) {
   .page-content .contact-content .contact .contact-btn {
+    margin-bottom: 0;
     width: 100%;
   }
 }
@@ -749,22 +766,11 @@ a, a:visited {
   }
 }
 .page-content .gallery .gallery-container {
-  max-width: 1250px;
+  max-width: 100%;
   padding: 20px 0;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 20px; /* Écart horizontal */
-}
-.page-content .gallery .gallery-container .photo {
-  width: 100%;
-  height: 40vh;
-  -o-object-fit: cover;
-     object-fit: cover;
-}
-@media (max-width: 801px) {
-  .page-content .gallery .gallery-container .photo {
-    height: 40vh;
-  }
 }
 @media (max-width: 1024px) {
   .page-content .gallery .gallery-container {
@@ -809,7 +815,12 @@ a, a:visited {
   -o-object-fit: cover;
      object-fit: cover;
 }
-@media (max-width: 801px) {
+@media (max-width: 1024px) {
+  .photo-suggested .photo {
+    height: 60vh;
+  }
+}
+@media (max-width: 481px) {
   .photo-suggested .photo {
     height: 40vh;
   }
